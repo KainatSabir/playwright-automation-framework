@@ -22,16 +22,33 @@ test('Signup then create account and then delete', async () => {
     await homePage.loginSignuplink.click();
 
     await expect(signuppage.signuptitle).toHaveText('New User Signup!');
-    await signuppage.signupToApp("Kainat", "kainatsabir122@gmail.com");
+    await signuppage.signupToApp("Kainat", "kainatsabir+16@gmail.com"); //signup 
 
     await expect(signuppage.accountInfoPageText).toHaveText("Enter Account Information");
 
-    await signuppage.enterAccountInfo("Mr.", "Kainat Sabir", "Password123!", "21", "march", "2012");
+    await signuppage.enterAccountInfo("Mr.", "Kainat Sabir", "Password123!", "21", "march", "2012"); //account info
 
     await signuppage.newsletter.click();
     await signuppage.specialOffers.click();
 
-    await page.waitForTimeout(10000);
+    await signuppage.enterAddressInfo("firstname", "lastname", "company", "address line 1", "address line 2", "canada", "state", "city", "54000", "738738373"); //address info
+    await signuppage.btnCreateAccount.click();
+
+    const AccountCreatedtextContent = await signuppage.titleAccountCreated.textContent();
+    await expect(AccountCreatedtextContent?.trim()).toEqual("Account Created!");   //account created successfullt
+
+    await signuppage.continuebtn.click();
+
+    await expect(signuppage.loggedinas).toBeVisible();
+
+    const loggedinastext=await signuppage.loggedinas.textContent();
+
+    await expect(loggedinastext?.trim()).toEqual('Kainat Sabir');
+
+    await signuppage.deleteaccount.click();   //delete account
+    await expect(signuppage.accountdeleted).toBeVisible();   //account deleted successfully
+    await signuppage.continuebtn.click();
+    
 
  
 

@@ -30,6 +30,12 @@ class SignupPage{
     public city : Locator;
     public zipcode : Locator;
     public mobile : Locator;
+    public btnCreateAccount:Locator;
+    public titleAccountCreated:Locator;
+    public continuebtn:Locator;
+    public loggedinas:Locator;
+    public deleteaccount:Locator;
+    public accountdeleted:Locator;
 
 
     constructor(page:Page){
@@ -60,6 +66,12 @@ class SignupPage{
         this.city = page.getByTestId("city");
         this.zipcode = page.getByTestId("zipcode");
         this.mobile = page.getByTestId("mobile_number");
+        this.btnCreateAccount = page.getByText("Create Account");
+        this.titleAccountCreated = page.getByTestId("account-created");
+        this.continuebtn = page.getByTestId("continue-button");
+        this.loggedinas = page.locator('li >> b');
+        this.deleteaccount = page.locator(".fa.fa-trash-o");
+        this.accountdeleted = page.getByText("Account Deleted!");
 
     }
 
@@ -83,7 +95,21 @@ class SignupPage{
         const formattedmonth = await month.charAt(0).toUpperCase() + month.slice(1).toLowerCase();
         await this.dropdownMonth.selectOption(formattedmonth);
         await this.dropdownYear.selectOption(year); 
-    
+    }
+
+    async enterAddressInfo(firstname:string, lastname:string, company:string, address:string, address2:string, country:string, state:string, city:string, zipcode:string, mobilenumber:string){
+        await this.addressFirstName.fill(firstname);
+        await this.addressLastName.fill(lastname);
+        await this.company.fill(company);
+        await this.address.fill(address);
+        await this.address2.fill(address2);
+        const formattedCountry = country.charAt(0).toUpperCase() + country.slice(1).toLowerCase();
+        await this.dropdownCountry.selectOption(formattedCountry);
+        await this.state.fill(state);
+        await this.city.fill(city);
+        await this.zipcode.fill(zipcode);
+        await this.mobile.fill(mobilenumber);     
+   
     }
     
 }
