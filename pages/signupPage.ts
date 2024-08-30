@@ -1,4 +1,6 @@
 import { Locator, Page } from "playwright";
+import homePage from "./homePage";
+import { expect } from "playwright/test";
 
 
 class SignupPage{
@@ -33,8 +35,6 @@ class SignupPage{
     public btnCreateAccount:Locator;
     public titleAccountCreated:Locator;
     public continuebtn:Locator;
-    public loggedinas:Locator;
-    public deleteaccount:Locator;
     public accountdeleted:Locator;
 
 
@@ -69,8 +69,6 @@ class SignupPage{
         this.btnCreateAccount = page.getByText("Create Account");
         this.titleAccountCreated = page.getByTestId("account-created");
         this.continuebtn = page.getByTestId("continue-button");
-        this.loggedinas = page.locator('li >> b');
-        this.deleteaccount = page.locator(".fa.fa-trash-o");
         this.accountdeleted = page.getByText("Account Deleted!");
 
     }
@@ -79,6 +77,8 @@ class SignupPage{
        await this.signupName.fill(username);
        await this.emailadd.fill(email);
        await this.signupbtn.click();
+
+       await expect(this.accountInfoPageText).toHaveText("Enter Account Information");
     }
 
     async enterAccountInfo(title:string, name:string, password:string, day:string, month:string, year:string){
@@ -95,6 +95,9 @@ class SignupPage{
         const formattedmonth = await month.charAt(0).toUpperCase() + month.slice(1).toLowerCase();
         await this.dropdownMonth.selectOption(formattedmonth);
         await this.dropdownYear.selectOption(year); 
+
+        await this.newsletter.click();
+        await this.specialOffers.click();
     }
 
     async enterAddressInfo(firstname:string, lastname:string, company:string, address:string, address2:string, country:string, state:string, city:string, zipcode:string, mobilenumber:string){
@@ -109,8 +112,14 @@ class SignupPage{
         await this.city.fill(city);
         await this.zipcode.fill(zipcode);
         await this.mobile.fill(mobilenumber);     
+
+        await this.btnCreateAccount.click();
+        const AccountCreatedtextContent = await this.titleAccountCreated.textContent();
+        await expect(AccountCreatedtextContent?.trim()).toEqual("Account Created!");  
+    
    
     }
+    
     
 }
 

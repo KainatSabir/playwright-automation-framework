@@ -4,7 +4,7 @@ import SignupPage from '../pages/signupPage';
 import openPage from '../pages/openPage';
 import HomePage from '../pages/homePage';
 
-test('Signup then create account and then delete', async () => {
+test('Test Case-1:Register User', async () => {
     
     const pageManager = new openPage('firefox', false); 
     await pageManager.initialize();
@@ -13,7 +13,7 @@ test('Signup then create account and then delete', async () => {
     const page = await pageManager.gotoUrl("https://www.automationexercise.com/");
 
     const signuppage = new SignupPage(page);  //instance of signuppage class
-    const homePage = new HomePage(page);  //instance of homepage class
+    const homePage = new HomePage(page, signuppage);  //instance of homepage class
 
     const homepagelogovisible = await homePage.homepagelogo.isVisible();
     await expect(homepagelogovisible).toBe(true);
@@ -32,24 +32,18 @@ test('Signup then create account and then delete', async () => {
     await signuppage.specialOffers.click();
 
     await signuppage.enterAddressInfo("firstname", "lastname", "company", "address line 1", "address line 2", "canada", "state", "city", "54000", "738738373"); //address info
-    await signuppage.btnCreateAccount.click();
 
     const AccountCreatedtextContent = await signuppage.titleAccountCreated.textContent();
     await expect(AccountCreatedtextContent?.trim()).toEqual("Account Created!");   //account created successfullt
 
     await signuppage.continuebtn.click();
 
-    await expect(signuppage.loggedinas).toBeVisible();
+    await expect(homePage.loggedinas).toBeVisible();
 
-    const loggedinastext=await signuppage.loggedinas.textContent();
+    const loggedinastext=await homePage.loggedinas.textContent();
 
     await expect(loggedinastext?.trim()).toEqual('Kainat Sabir');
 
-    await signuppage.deleteaccount.click();   //delete account
-    await expect(signuppage.accountdeleted).toBeVisible();   //account deleted successfully
-    await signuppage.continuebtn.click();
-    
-
- 
+    await homePage.deleteaccountfunc();
 
 });
