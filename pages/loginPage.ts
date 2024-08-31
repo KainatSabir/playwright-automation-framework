@@ -12,6 +12,7 @@ class LoginPage{
     public loginEmail:Locator;
     public loginPassword:Locator;
     public loginbtn:Locator;
+    public incorrectEmailPasswordError:Locator;
 
     constructor(page:Page, signupPage: SignupPage, homePage:HomePage){
         this.page = page; 
@@ -21,6 +22,7 @@ class LoginPage{
         this.loginEmail = page.getByTestId('login-email');
         this.loginPassword = page.getByTestId('login-password');
         this.loginbtn = page.getByTestId('login-button');
+        this.incorrectEmailPasswordError=page.getByText('Your email or password is incorrect!');
 
     }
 
@@ -28,8 +30,6 @@ class LoginPage{
         await this.loginEmail.fill(email);
         await this.loginPassword.fill(password);
         await this.loginbtn.click();
-
-        await expect(this.homePage.loggedinas).toBeVisible();
     }
 
 }
