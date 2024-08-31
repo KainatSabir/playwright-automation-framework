@@ -8,6 +8,7 @@ class HomePage{
     public homepagelogo:Locator;
     public loginSignuplink:Locator;
     public loggedinas:Locator;
+    public logout:Locator;
     public deleteaccount:Locator;
 
     constructor(page:Page, signupPage: SignupPage){
@@ -17,6 +18,7 @@ class HomePage{
         this.loginSignuplink = page.getByText(" Signup / Login");
         this.loggedinas = page.locator('li >> b');
         this.deleteaccount = page.locator(".fa.fa-trash-o");
+        this.logout = page.locator(".fa.fa-lock");
     }
 
     async deleteaccountfunc(){

@@ -56,7 +56,6 @@ test('Test Case-3: Login User with incorrect email and password', async()=>{
     const errortxt = await loginPage.incorrectEmailPasswordError.textContent();
     await expect(errortxt).toBe("Your email or password is incorrect!");
 
-
 });    
 
 });
