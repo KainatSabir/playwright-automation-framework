@@ -5,12 +5,15 @@ import HomePage from '../pages/homePage';
 import LoginPage from '../pages/loginPage';
 import BrowserManager from '../pages/openPage';
 import SignupPage from '../pages/signupPage';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-test('Test Case-4: Logout User', async()=>{
+const BASE_URL = process.env.BASE_URL || 'http://localhost';
+test('Test Case-4: Logout User', async({})=>{
     const pageManager = new openPage('firefox', false);
     await pageManager.initialize();
 
-    const page = await pageManager.gotoUrl("https://www.automationexercise.com/");
+    const page = await pageManager.gotoUrl(BASE_URL);
 
     const signupPage = new SignupPage(page);
     const homePage = new HomePage(page, signupPage);  //instance of homepage class
@@ -21,10 +24,7 @@ test('Test Case-4: Logout User', async()=>{
 
     await homePage.loginSignuplink.click();
 
-    await loginPage.logintxt.isVisible();
     await loginPage.login("kainatsabir+3@gmail.com", "Password123!");
-
-    await expect(homePage.loggedinas).toBeVisible();
 
     await homePage.logout.click();
     await loginPage.logintxt.isVisible();

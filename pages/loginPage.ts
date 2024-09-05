@@ -5,9 +5,10 @@ import HomePage from "./homePage";
 
 class LoginPage{
 
-    public page:Page;
+    private page:Page;
     private signupPage:SignupPage;
     private homePage:HomePage;
+
     public logintxt:Locator;
     public loginEmail:Locator;
     public loginPassword:Locator;
@@ -18,6 +19,7 @@ class LoginPage{
         this.page = page; 
         this.signupPage = signupPage;
         this.homePage = homePage;
+        
         this.logintxt = page.getByText('Login to your account');
         this.loginEmail = page.getByTestId('login-email');
         this.loginPassword = page.getByTestId('login-password');
@@ -27,9 +29,12 @@ class LoginPage{
     }
 
     async login(email:string, password:string){
+        await this.logintxt.isVisible();
         await this.loginEmail.fill(email);
         await this.loginPassword.fill(password);
         await this.loginbtn.click();
+
+        await expect(this.homePage.loggedinas).toBeVisible();
     }
 
 }

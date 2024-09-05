@@ -36,6 +36,7 @@ class SignupPage{
     public titleAccountCreated:Locator;
     public continuebtn:Locator;
     public accountdeleted:Locator;
+    public alreadyexistAccountError;
 
 
     constructor(page:Page){
@@ -70,6 +71,7 @@ class SignupPage{
         this.titleAccountCreated = page.getByTestId("account-created");
         this.continuebtn = page.getByTestId("continue-button");
         this.accountdeleted = page.getByText("Account Deleted!");
+        this.alreadyexistAccountError = page.getByText("Email Address already exist!");
 
     }
 
@@ -77,8 +79,6 @@ class SignupPage{
        await this.signupName.fill(username);
        await this.emailadd.fill(email);
        await this.signupbtn.click();
-
-       await expect(this.accountInfoPageText).toHaveText("Enter Account Information");
     }
 
     async enterAccountInfo(title:string, name:string, password:string, day:string, month:string, year:string){
