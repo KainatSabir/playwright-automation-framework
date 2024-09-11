@@ -12,6 +12,8 @@ class HomePage{
     public logout:Locator;
     public deleteaccount:Locator;
     public homepagelink:Locator;
+    public testcaseslink:Locator;
+    public testcasespagetitle:Locator;
 
     constructor(page:Page, signupPage: SignupPage){
         this.page = page; 
@@ -23,6 +25,8 @@ class HomePage{
         this.logout = page.locator(".fa.fa-lock");
         this.contactuspagelink = page.locator(".fa.fa-envelope");
         this.homepagelink = page.locator(".fa.fa-home");
+        this.testcaseslink = page.locator('//a[text()=" Test Cases"]');
+        this.testcasespagetitle = page.locator(".title.text-center");
     }
 
     async deleteaccountfunc(){
