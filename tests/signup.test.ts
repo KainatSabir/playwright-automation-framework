@@ -1,10 +1,8 @@
 import { test, expect, Browser,BrowserContext, Page } from '@playwright/test';
-import { chromium, firefox, webkit } from 'playwright'
 import SignupPage from '../pages/signupPage'; 
 import openPage from '../pages/openPage';
 import HomePage from '../pages/homePage';
 import * as dotenv from 'dotenv';
-import { sign } from 'crypto';
 
 dotenv.config();
 const BASE_URL = process.env.BASE_URL || 'http://localhost';

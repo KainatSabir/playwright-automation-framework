@@ -1,9 +1,7 @@
 import { test, expect, Browser,BrowserContext, Page } from '@playwright/test';
 import { chromium, firefox, webkit } from 'playwright'
 import openPage from '../pages/openPage';
-import homePage from '../pages/homePage';
 import LoginPage from '../pages/loginPage';
-import signupPage from '../pages/signupPage';
 import HomePage from '../pages/homePage';
 import SignupPage from '../pages/signupPage';
 import * as dotenv from 'dotenv';

@@ -3,7 +3,6 @@ import { chromium, firefox, webkit } from 'playwright'
 import openPage from '../pages/openPage';
 import HomePage from '../pages/homePage';
 import LoginPage from '../pages/loginPage';
-import BrowserManager from '../pages/openPage';
 import SignupPage from '../pages/signupPage';
 import * as dotenv from 'dotenv';
 dotenv.config();
