@@ -8,7 +8,7 @@ dotenv.config();  //load env variables from .env file
 
 const BASE_URL = process.env.BASE_URL || 'http://localhost';
 
-    test('Test Case-6: Contact Us Form', async()=>{
+    test('Test Case-7: Test Cases Page', async()=>{
         const pageManager = new openPage('chrome', false);
         await pageManager.initialize();
 

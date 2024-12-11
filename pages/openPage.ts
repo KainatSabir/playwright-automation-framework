@@ -1,6 +1,6 @@
 import { Browser, BrowserContext, chromium, firefox, webkit, Page as PlaywrightPage } from 'playwright';
 
-class BrowserManager {
+class openPage {
     private browser: Browser | undefined;
     private context: BrowserContext | undefined;
 
@@ -8,26 +8,26 @@ class BrowserManager {
 
     public async initialize() {
         try {
-            this.browser = await this.launchBrowser(this.browserType, this.headless);
+            switch (this.browserType) {
+                case 'chromium':
+                    this.browser= await chromium.launch({ headless:false });
+                    break;
+                case 'firefox':
+                    this.browser= await firefox.launch({ headless:false });
+                    break;
+                case 'webkit':
+                    this.browser= await webkit.launch({ headless:false });
+                    break;
+                case 'chrome':
+                    this.browser= await chromium.launch({ headless:false, channel:'chrome' });
+                    break;
+                default:
+                    throw new Error('Unsupported browser type');
+            }
             this.context = await this.browser.newContext();
         } 
         catch (error) {
             console.error('Failed to initialize browser:', error);
-        }
-    }
-
-    public async launchBrowser(browserType: 'chromium' | 'firefox' | 'webkit' | 'chrome', headless: boolean) {
-        switch (browserType) {
-            case 'chromium':
-                return chromium.launch({ headless:false });
-            case 'firefox':
-                return firefox.launch({ headless:false });
-            case 'webkit':
-                return webkit.launch({ headless:false });
-            case 'chrome':
-                return chromium.launch({ headless:false, channel:'chrome' });
-            default:
-                throw new Error('Unsupported browser type');
         }
     }
 
@@ -48,4 +48,4 @@ class BrowserManager {
     }
 }
 
-export default BrowserManager;
+export default openPage;

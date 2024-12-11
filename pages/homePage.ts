@@ -14,6 +14,9 @@ class HomePage{
     public homepagelink:Locator;
     public testcaseslink:Locator;
     public testcasespagetitle:Locator;
+    public subscription:Locator;
+    public subscriptionsubmitbtn:Locator;
+    public subscriptionsuccess:Locator;
 
     constructor(page:Page, signupPage: SignupPage){
         this.page = page; 
@@ -27,6 +30,9 @@ class HomePage{
         this.homepagelink = page.locator(".fa.fa-home");
         this.testcaseslink = page.locator('//a[text()=" Test Cases"]');
         this.testcasespagetitle = page.locator(".title.text-center");
+        this.subscription = page.locator("//input[@type='email']");
+        this.subscriptionsubmitbtn = page.locator("//button[@type='submit']");
+        this.subscriptionsuccess = page.locator(".alert-success.alert");
     }
 
     async deleteaccountfunc(){
