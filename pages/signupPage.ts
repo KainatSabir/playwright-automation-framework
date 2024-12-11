@@ -45,7 +45,7 @@ class SignupPage{
         this.signupName = page.getByPlaceholder("Name");
         this.emailadd = page.getByTestId("signup-email");
         this.signupbtn = page.getByTestId("signup-button");
-        this.accountInfoPageText = page.locator("//*[contains(text(), 'Enter Account Information')] ");
+        this.accountInfoPageText = page.locator("//*[contains(text(), 'Enter Account Information')]");
         this.titleMr = page.locator("//div[@id='uniform-id_gender1']");
         this.titleMrs = page.locator("//input[@value='Mrs']");
         this.gender = page.locator("#uniform-id_gender1");

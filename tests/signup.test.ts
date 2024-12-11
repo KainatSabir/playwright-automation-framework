@@ -6,7 +6,7 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 const BASE_URL = process.env.BASE_URL || 'http://localhost';
-let emailCounter = 1;
+let emailCounter = Math.floor(Math.random() * 900) + 100;;
 
 test.describe('signup tests', () => {
 

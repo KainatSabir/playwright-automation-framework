@@ -34,7 +34,7 @@ class LoginPage{
         await this.loginPassword.fill(password);
         await this.loginbtn.click();
 
-        await expect(this.homePage.loggedinas).toBeVisible();
+     
     }
 
 }

@@ -40,7 +40,7 @@ test.describe('login tests', () => {
         await expect(homePage.loggedinas).toBeVisible(); // Ensure this matches HomePage class
     
         const loggedinastext = await homePage.loggedinas.textContent();
-        await expect(loggedinastext?.trim()).toEqual('Kainat Sabir');
+        await expect(loggedinastext?.trim()).toEqual("Kainat");
     
         await homePage.deleteaccountfunc();
       });

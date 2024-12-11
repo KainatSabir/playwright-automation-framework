@@ -65,8 +65,10 @@ test('Test Case 9: Search Product', async() =>{
     await expect(productNameText?.toLowerCase()).toContain(searchTerm.toLowerCase());
   }
 
- 
+ /*test('Test Case 12: Add Products in Cart', async()=>{
 
+ })
+*/
 
 });
 });
